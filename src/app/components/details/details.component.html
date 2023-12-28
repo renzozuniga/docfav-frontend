@@ -1,0 +1,99 @@
+<div class="row" style="margin: 0 auto;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/games">Games</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Details</li>
+        </ol>
+    </nav>
+</div>
+<div class="row" style="margin: 0 auto;">
+    <h1 style="display: flex; justify-content: center; margin: 2rem;">{{ game?.title }}</h1>
+</div>
+<div class="container row" style="margin: 0 auto">
+    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+        <div class="carousel-slider">
+            <div id="carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+              <div class="carousel-inner">
+                <div [ngClass]="slideSelected == i ? 'item active' : 'item'" *ngFor="let screenshot of game?.screenshots; let i = index">
+                    <img src="{{ screenshot.image }}" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="clearfix">
+              <div id="thumbcarousel" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <div (click)="setSlide(i)" class="thumb" *ngFor="let screenshot of game?.screenshots; let i = index">
+                        <img src="{{ screenshot.image }}" alt="">
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#thumbcarousel" role="button" data-bs-slide="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> </a> <a class="right carousel-control" href="#thumbcarousel" role="button" data-bs-slide="next"><i class="fa fa-angle-right" aria-hidden="true"></i> </a> </div>
+            </div>
+        </div>     
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: center;">
+        <div class="information">
+            <div class="thumbnail">
+                <img src="{{ game?.thumbnail }}" alt="">
+            </div>
+            <div class="short_description">
+                {{ game?.short_description }}
+            </div>
+            <div class="credits">
+                <div style="display: flex;">
+                    <p style="color: darkgrey;">RELEASE DATE:</p> <p>{{ game?.release_date }}</p>
+                </div>
+                <div style="display: flex;">
+                    <p style="color: darkgrey;">DEVELOPER:</p> <p>{{ game?.developer }}</p>
+                </div>
+                <div style="display: flex;">
+                    <p style="color: darkgrey;">PUBLISHER:</p> <p>{{ game?.publisher }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-divider">
+    <div class="divider"></div>
+</div>
+<div class="row" style="padding: 40px 0; display: flex; justify-content: center;">
+    <div class="about" style="width: 80%;">
+        <h3>About this game</h3>
+        <p style="align-items: left;">{{ game?.description }}</p>
+    </div>    
+</div>
+<div class="container-divider">
+    <div class="divider"></div>
+</div>
+<div class="row" style="padding: 40px 0; display: flex; justify-content: center;">
+    <div class="requirements" style="width: 80%;">
+        <h3>System requirements</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">OS</th>
+                        <td>{{ game?.minimum_system_requirements.os }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">PROCESSOR</th>
+                        <td>{{ game?.minimum_system_requirements.processor }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">MEMORY</th>
+                        <td>{{ game?.minimum_system_requirements.memory }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">GRAPHICS</th>
+                        <td>{{ game?.minimum_system_requirements.graphics }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">STORAGE</th>
+                        <td>{{ game?.minimum_system_requirements.storage }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>    
+</div>
